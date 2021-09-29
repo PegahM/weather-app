@@ -2,14 +2,37 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-.weather-app {
+.float-left {
+  float: left;
+}
+.weather-app-wrapper {
   max-width: 600px;
   margin: 20px auto;
+}
+.weather-app {
   padding: 20px;
   border: 1px solid #dadce0;
   border-radius: 10px;
 }
-
+.overview {
+  margin-bottom: 20px;
+}
+.weather-tempreture img {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
+}
+.weather-tempreture strong {
+  color: rgb(33, 33, 33);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+}
+.weather-tempreture .units {
+  position: relative;
+  font-size: 16px;
+  top: -34px;
+}
 h1 {
   color: gray;
   font-size: 24px;
