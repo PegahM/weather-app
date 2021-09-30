@@ -28,7 +28,8 @@ function displayTemprature(response) {
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElemnt = document.querySelector("#icon");
-  tempratureElement.innerHTML = Math.round(response.data.main.temp);
+  celciousTemp = response.data.main.temp;
+  tempratureElement.innerHTML = Math.round(celciousTemp);
   cityElement.innerHTML = response.data.name;
   descriptionElemnt.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
@@ -40,9 +41,9 @@ function displayTemprature(response) {
   );
   iconElemnt.setAttribute("alt", response.data.weather[0].description);
 }
+
 function search(city) {
   let apiKey = "73e732d25bae3e4404f4d1aa421272a7";
-
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemprature);
 }
@@ -52,7 +53,34 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 }
-search("new york");
+
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+
+  let tempElement = document.querySelector("#temprature");
+  celciousLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let farenTemp = (celciousTemp * 9) / 5 + 32;
+
+  tempElement.innerHTML = Math.round(farenTemp);
+}
+function displayCelciousTemp(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#temprature");
+  celciousLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  tempElement.innerHTML = Math.round(celciousTemp);
+}
+
+let celciousTemp = null;
 
 let formElement = document.querySelector("#search-form");
 formElement.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+let celciousLink = document.querySelector("#celcious-link");
+celciousLink.addEventListener("click", displayCelciousTemp);
+
+search("new york");
