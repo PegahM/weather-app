@@ -20,7 +20,8 @@ function formatDate(timestamp) {
   let day = date.getDay();
   return `${days[day]} ${hours}:${minutes}`;
 }
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday"];
   let forecastHTML = `<div class="row">`;
@@ -32,7 +33,7 @@ function displayForecast() {
                 <div class="wather-forecast-date">${i}</div>
 
                 <img
-                  src="http://openweathermap.org/img/wn/50d@2x.png"
+                  src="https://openweathermap.org/img/wn/50d@2x.png"
                   alt=""
                   width="42"
                 />
@@ -46,7 +47,13 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
 
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
+}
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "73e732d25bae3e4404f4d1aa421272a7";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 function displayTemprature(response) {
   let tempratureElement = document.querySelector("#temprature");
@@ -65,9 +72,11 @@ function displayTemprature(response) {
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElemnt.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElemnt.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
@@ -112,4 +121,3 @@ let celciousLink = document.querySelector("#celcious-link");
 celciousLink.addEventListener("click", displayCelciousTemp);
 
 search("new york");
-displayForecast();
