@@ -109,33 +109,7 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayFahrenheitTemp(event) {
-  event.preventDefault();
-
-  let tempElement = document.querySelector("#temprature");
-  celciousLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let farenTemp = (celciousTemp * 9) / 5 + 32;
-
-  tempElement.innerHTML = Math.round(farenTemp);
-}
-function displayCelciousTemp(event) {
-  event.preventDefault();
-  let tempElement = document.querySelector("#temprature");
-  celciousLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  tempElement.innerHTML = Math.round(celciousTemp);
-}
-
-let celciousTemp = null;
-
 let formElement = document.querySelector("#search-form");
 formElement.addEventListener("submit", handleSubmit);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
-
-let celciousLink = document.querySelector("#celcious-link");
-celciousLink.addEventListener("click", displayCelciousTemp);
 
 search("new york");
