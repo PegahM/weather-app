@@ -20,6 +20,34 @@ function formatDate(timestamp) {
   let day = date.getDay();
   return `${days[day]} ${hours}:${minutes}`;
 }
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (i) {
+    forecastHTML =
+      forecastHTML +
+      `
+              <div class="col-2">
+                <div class="wather-forecast-date">${i}</div>
+
+                <img
+                  src="http://openweathermap.org/img/wn/50d@2x.png"
+                  alt=""
+                  width="42"
+                />
+                <div class="weather-forecst-temprature">
+                  <span class="weather-forecast-temprature-max"> 18° </span>
+                  <span class="weather-forecast-temprature-min"> 12° </span>
+                </div>
+              </div>
+            `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
 function displayTemprature(response) {
   let tempratureElement = document.querySelector("#temprature");
   let cityElement = document.querySelector("#city");
@@ -84,3 +112,4 @@ let celciousLink = document.querySelector("#celcious-link");
 celciousLink.addEventListener("click", displayCelciousTemp);
 
 search("new york");
+displayForecast();
