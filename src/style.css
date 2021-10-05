@@ -1,6 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
+
+* {
+  box-sizing: border-box;
+  text-transform: capitalize;
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: rgb(0, 32, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 32, 36, 0.7987570028011204) 0%,
+    rgba(11, 230, 224, 0.7455357142857143) 42%,
+    rgba(0, 255, 239, 0.6306897759103641) 65%
+  );
 }
 .float-left {
   float: left;
@@ -11,7 +26,7 @@ body {
 }
 .weather-app {
   padding: 20px;
-  border: 1px solid #dadce0;
+  border: 1px solid black;
   border-radius: 10px;
 }
 .overview {
@@ -35,6 +50,7 @@ body {
 }
 h1 {
   color: gray;
+  font-family: "Open Sans", sans-serif;
   font-size: 24px;
   font-weight: 100;
   line-height: 28px;
